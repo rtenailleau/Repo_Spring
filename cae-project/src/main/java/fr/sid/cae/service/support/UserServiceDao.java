@@ -147,7 +147,9 @@ public class UserServiceDao implements UserService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void addUser(User user) throws UserExistException {
+		
 		// TODO Auto-generated method stub
 		user.setId(UUID.randomUUID().toString());
 		userDao.addUser(user);

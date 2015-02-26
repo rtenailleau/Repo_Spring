@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			   xsi:noNamespaceSchemaLocation="logback.xsd">
+	
+	<contextName>sid-cae</contextName>
+	
+	<appender name="console-appender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%p %d{yyyy-MM-dd HH:mm:ss} [%c] - %m%n</pattern>
+		</encoder>
+	</appender>
+	
+	<root level="info">
+		<appender-ref ref="console-appender" />
+	</root>
+	
+</configuration>

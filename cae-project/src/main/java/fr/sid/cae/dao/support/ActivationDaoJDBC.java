@@ -26,11 +26,10 @@ public class ActivationDaoJDBC implements ActivationDao {
 	}
 
 	public void addActivation(Activation a) {
-		jdbcTemplate.update(ADD_ACTIVATION, a.getActivationKey(), a.getUserId());
+		jdbcTemplate.update(ADD_ACTIVATION, a.getUserId(), a.getActivationKey());
 	}
 
 	public void deleteActivation(String activationId) {
 		jdbcTemplate.update(DEL_ACTIVATION, activationId);
 	}
-
 }

@@ -2,6 +2,19 @@
 Thumbs.db
 ehthumbs.db
 
+# fichiers de config eclipse
+cae-project/*.settings
+cae-project/*.classpath
+cae-project/*.project
+
+#class
+.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
 # Folder config file
 Desktop.ini
 

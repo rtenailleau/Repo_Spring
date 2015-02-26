@@ -16,6 +16,14 @@ public class IndexController {
 	@RequestMapping("/index.html")
 	public String showIndex() {
 		return "hello";
+//		return "add-user";
 	}
+	
+	@RequestMapping("/authentification.html")
+	public String showConnection() {
+		return "connection";
+	}
+	
+	
 	
 }

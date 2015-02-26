@@ -1,5 +1,7 @@
 package fr.sid.cae.service.support;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,7 @@ public class UserServiceDao implements UserService {
 	private UserDao userDao;
 	private ActivationDao activationDao;
 	private PasswordDao passwordDao;
+	private SecureRandom rand = new SecureRandom();
 	
 	@Autowired
 	public void setUserDao(UserDao userDao) {
@@ -146,6 +149,25 @@ public class UserServiceDao implements UserService {
 	@Override
 	public void addUser(User user) throws UserExistException {
 		// TODO Auto-generated method stub
+		user.setId(UUID.randomUUID().toString());
+		userDao.addUser(user);
+		
+		// Password généré aléatoirement
+		Password p = new Password();
+		String newMdp = new BigInteger(130, rand).toString();
+		
+		p.setUserId(user.getId());
+		p.setPassword(newMdp);
+		p.setConfirmPassword(newMdp);
+
+		passwordDao.setPassword(p);
+		
+		//Génération de l'activation
+		Activation a = new Activation();
+		a.setActivationKey(new BigInteger(130, rand).toString());
+		a.setUserId(user.getId());
+		
+		activationDao.addActivation(a);
 		
 	}
 	

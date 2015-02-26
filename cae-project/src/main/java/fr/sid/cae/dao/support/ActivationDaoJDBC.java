@@ -11,7 +11,7 @@ import fr.sid.cae.domain.Activation;
 public class ActivationDaoJDBC implements ActivationDao {
 
 	private static final String GET_ACTIVATION = "SELECT userid FROM activation WHERE id = ?";
-	private static final String ADD_ACTIVATION = "INSERT INTO activation(id, userid) VALUES(?, ?)";
+	private static final String ADD_ACTIVATION = "INSERT INTO activation(id, activationkey) VALUES(?, ?)";
 	private static final String DEL_ACTIVATION = "DELETE FROM activation WHERE id = ?";
 	
 	private JdbcTemplate jdbcTemplate;

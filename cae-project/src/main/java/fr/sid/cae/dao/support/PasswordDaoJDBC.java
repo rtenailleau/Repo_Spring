@@ -11,7 +11,7 @@ import fr.sid.cae.domain.Password;
 public class PasswordDaoJDBC implements PasswordDao {
 
 	private static final String GET_PASSWORD = "SELECT password FROM password WHERE id = ?";
-	private static final String SET_PASSWORD = "INSERT INTO password(id, password) VALUES(?, ?) ON DUPLICATE KEY UPDATE password = ?";
+	private static final String SET_PASSWORD = "INSERT INTO password(id, password, confirmPassword) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE confirmPassword = ?";
 	
 	private JdbcTemplate jdbcTemplate;
 
@@ -25,7 +25,7 @@ public class PasswordDaoJDBC implements PasswordDao {
 	}
 	
 	public void setPassword(Password p) {
-		jdbcTemplate.update(SET_PASSWORD, p.getUserId(), p.getPassword(), p.getPassword());
+		jdbcTemplate.update(SET_PASSWORD, p.getUserId(), p.getPassword(), p.getConfirmPassword(),p.getConfirmPassword());
 	}
 
 }

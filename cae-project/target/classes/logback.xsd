@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<!-- root element 'configuration' -->
+	<xs:element name="configuration">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="contextName" type="xs:string" minOccurs="0" />
+				<xs:element name="appender" type="type-appender" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="logger" type="type-logger" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="root" type="type-root" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- child element 'appender' -->
+	<xs:complexType name="type-appender">
+		<xs:sequence>
+			<xs:element name="encoder" type="type-encoder" />
+			<xs:element name="file" type="xs:string" minOccurs="0" />
+			<xs:element name="rollingPolicy" type="type-rollingPolicy" minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required" />
+		<xs:attribute name="class" type="xs:string" use="required" />
+	</xs:complexType>
+	
+	<!-- child element 'encoder' -->
+	<xs:complexType name="type-encoder">
+		<xs:sequence>
+			<xs:element name="pattern" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- child element 'rollingPolicy' -->
+	<xs:complexType name="type-rollingPolicy">
+		<xs:sequence>
+			<xs:element name="fileNamePattern" type="xs:string" />
+			<xs:element name="maxHistory" type="xs:integer" />
+		</xs:sequence>
+		<xs:attribute name="class" type="xs:string" use="required" />
+	</xs:complexType>
+	
+	<!-- child element 'logger' -->
+	<xs:complexType name="type-logger">
+		<xs:sequence minOccurs="0">
+			<xs:element name="appender-ref" type="type-appender-ref" />
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required" />
+		<xs:attribute name="level" type="xs:string" use="optional" />
+		<xs:attribute name="additivity" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	
+	<!-- child element 'root' -->
+	<xs:complexType name="type-root">
+		<xs:sequence>
+			<xs:element name="appender-ref" type="type-appender-ref" />
+		</xs:sequence>
+		<xs:attribute name="level" type="xs:string" use="required" />
+	</xs:complexType>
+	
+	<!-- child element 'appender-ref' -->
+	<xs:complexType name="type-appender-ref">
+		<xs:attribute name="ref" type="xs:string" use="required" />
+	</xs:complexType>
+	
+</xs:schema>
